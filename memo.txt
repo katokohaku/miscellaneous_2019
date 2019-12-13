@@ -1,0 +1,105 @@
+
+Windows版のRで、pdftools::pdf_text()を使うとpopplerがメモリリークを起こす問題に捕まっている。
+callr::r()からバックグラウンドで呼び出せば、取り敢えずリーク自体を無かったことにして回避できるらしいが、よくこんな方法を思いつくなあ。
+
+
+メモ）最長共通部分列の取り出し。便利だ。
+PTXQC::LCSn(c("AAAAACBBBBB", "AAAAADBBBBB", "AAAABBBBBEF")) ## -->  "BBBBB"
+
+https://rdrr.io/cran/PTXQC/man/LCSn.html
+
+
+
+
+
+日付からFY取ってくるのにmutate+case_when使ってたけど、lubridate::quarter(..., fiscal_start = 4)とかやってからQを落としてやれば良いのか。
+
+
+
+
+ggridgesパッケージおすすめ。
+https://cran.r-project.org/web/packages/
+
+
+
+dplyrによる分かりやすい処理をdata.tableの書式による高速な処理に翻訳してくれる正に神パッケージな dtplyr。
+
+
+
+
+kato.kohaku.0 @kato_kohaku
+xgb + parsnip + DALEX。
+インタフェース間の接続がよく出来ていてpredict_functionの定義も要らなくなった。こうなると、parsnipがどこまで手広くカバーしてくれるかだけかな（LGBとかxgbのポワソン回帰とか）。
+
+https://github.com/katokohaku/EDAxgboost/blob/master/999_breakdown_xgb_iBreakdown_parsnip.md … pic.twitter.com/7vBsrDLSNV
+
+
+
+
+lightgbmでも xgbと同じように DALEX::explain()に渡す predict_function を定義すれば DrWhyのEDA系の機能は全部使える。
+lgb.interprete()は、xgbのpredictと違ってSHAPを出力してくれないので、iBreakDownを使うのが一番楽っぽいかな。
+
+https://github.com/katokohaku/EDAxgboost/blob/master/999_breakdown_LGB_iBreakdown.md … pic.twitter.com/ouGHjKCoug
+
+kato.kohaku.0 @kato_kohaku
+parsnip::predict()のオプションに、type = "pred_int" があってNGBoostなくてもいけるやんヤッターと思うも、つかの間でキックされて、そんなに世の中甘くないの図。 pic.twitter.com/JFRDHpCGJf
+
+
+自作パッケージのリファクタリングのために、foodwebで依存関係を可視化するのは多用してるけど、フローチャートの可視化は有ったら使うだろうか。
+https://stackoverflow.com/questions/46910042/control-plot-layout-in-foodweb-plot-from-mvbutils-r-package 
+
+
+
+
+フローチャートを可視化してくれるの面白い。デバッグとかに使える、かな？
+https://github.com/moodymudskipper/funflow
+
+
+モデルアンサンブルの予測のShapley値を計算してくれるRパッケージが出てる。もちろん単体モデルの分解もできる。特徴量を指定することで総当たりしないで計算量を減らすオプションあり。
+https://github.com/nredell/shapFlex
+
+
+
+DrWhyのrfExplainer、multiway importance plotは割と昔からあって線形相関になって欲しいけどそうならない。あれをML method agnosticに出来たらクールだとずっと思ってるけどmetricが思いつかない。
+https://www.r-bloggers.com/explaining-predictions-random-forest-post-hoc-analysis-randomforestexplainer-package/
+
+
+
+
+kato.kohaku.0 @kato_kohaku
+可視化パッケージは作るとして、どこまで隠蔽するかなあ。たとえば雨雲プロットのwrapperだけexportで欲しい人とかいるんだろうか？ pic.twitter.com/pXFBmV5kBm
+
+
+
+
+kato.kohaku.0 @kato_kohaku
+昨日の続き。@utaka233 さんに教えていただいた密度ベースの階層クラスタリング（HDBSCAN）で、くねくねプロットのラベル仕分けをを試す。
+・わりと良さそうな仕分けになってそう(右下)
+・UMAPのパラメタ×HDBSCANのパラメタチューニングが沼
+
+
+
+mlr３がCRANにリリースされてる。真面目に使えるレベルになったのか。 https://cran.r-project.org/web/packages/mlr3/index.html …
+
+
+
+R側とpython側の乱数生成が一致してくれるといろんな検証が捗るので、そのあたりをRmdのpythonチャンクがどのくらいヘルプしてくれるのかなあ、とか試しつつ勉強中。→　reticulateパッケージでRからPythonを使う https://qiita.com/yamano357/items/9319d4b073d82a261ed8 … #Qiita
+
+
+
+
+artykitのggplot版が出てる。(比較的)シンプルな層別化＋可視化用には良さそう　https://cran.r-project.org/web/packages/ggparty/vignettes/ggparty-graphic-partying.html … pic.twitter.com/BkhfCyDk21
+
+
+
+
+
+別件でたどり着いたけど、このまえMSから出てた Diverse Counterfactual Explanations論文の実装、これかな。PyTorchとscikit-learn に対応との由、あとで使ってみよう。　https://github.com/microsoft/DiCE 
+
+
+
+
+
+
+
+
